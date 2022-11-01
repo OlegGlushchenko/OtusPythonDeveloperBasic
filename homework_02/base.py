@@ -12,20 +12,12 @@ class Vehicle(ABC):
 
     def start(self):
         if not self.started:
-            try:
-                if not (self.fuel > 0):
-                    raise LowFuelError("Low fuel")
-                self.started = not self.started
-            except LowFuelError as error:
-                print(error.value)
-                raise
+            if not (self.fuel > 0):
+                raise LowFuelError("Low fuel")
+            self.started = not self.started
 
     def move(self, distance):
         remaining_fuel = self.fuel - distance * self.fuel_consumption
-        try:
-            if not (remaining_fuel >= 0):
-                raise NotEnoughFuel("Not enought fuel")
-        except NotEnoughFuel as error:
-            print(error.value)
-            raise
+        if not (remaining_fuel >= 0):
+            raise NotEnoughFuel("Not enought fuel")
         self.fuel = remaining_fuel

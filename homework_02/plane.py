@@ -15,13 +15,9 @@ class Plane(Vehicle):
         self.fuel_consumption = fuel_consumption
 
     def load_cargo(self, cargo_for_loading):
-        try:
-            if (self.cargo + cargo_for_loading) > self.max_cargo:
-                raise CargoOverload("Overload")
-            self.cargo = self.cargo + cargo_for_loading
-        except CargoOverload as error:
-            print(error.value)
-            raise
+        if (self.cargo + cargo_for_loading) > self.max_cargo:
+            raise CargoOverload("Overload")
+        self.cargo = self.cargo + cargo_for_loading
 
     def remove_all_cargo(self):
         cargo_before_clearing = self.cargo
