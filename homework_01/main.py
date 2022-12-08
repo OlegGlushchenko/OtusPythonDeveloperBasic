@@ -23,7 +23,7 @@ def is_prime(num):
     if num <= 1:
         return None
     is_simple = True
-    checks = [num % i == 0 for i in range(2, (num // 2) + 1)]
+    checks = (num % i == 0 for i in range(2, (num // 2) + 1))
     for check in checks:
         if check:
             is_simple = False
@@ -47,4 +47,4 @@ def filter_numbers(nums, num_type):
     if num_type == EVEN:
         return list(filter(lambda num: (num % 2 == 0), nums ))
     if num_type == PRIME:
-        return list(filter(lambda num: is_prime(num), nums ))
+        return list(filter(is_prime, nums ))
