@@ -7,7 +7,6 @@
 
 
 class BaseError(Exception):
-
     def __init__(self, value):
         self.value = value
 
@@ -25,5 +24,3 @@ class NotEnoughFuel(BaseError):
 
 class CargoOverload(BaseError):
     pass
-
-
