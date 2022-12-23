@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Index
+{% endblock %}
+
+{% block body %}
+<h1> This is root page.</h1>
+<p>From this page you can go to:</p>
+<ul class="list-group">
+    {% for page_id, page_dict in pages.items() %}
+        <li class="list-group-item">
+            <a class="text-decoration-none"
+                    href="{{ page_dict['URL'] }}">{{ page_dict['name'] }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
