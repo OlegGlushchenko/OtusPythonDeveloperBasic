@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Diary
+{% endblock %}
+
+{% block body %}
+    <h4>{{ record.date | date_format }}</h4>
+    <h6>{{ record.title }}</h6>
+    <p>{{ record.text }}</p>
+    <div>
+      <a href="{{ url_for('diary_record_app.diary_list') }}"
+      >Back to diary records list</a>
+    </div>
+{% endblock %}

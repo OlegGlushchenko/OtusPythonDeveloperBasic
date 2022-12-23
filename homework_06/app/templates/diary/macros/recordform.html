@@ -1,0 +1,32 @@
+{% macro recordform(form, buttontext='Create') %}
+  <form method="post">
+    {{ form.hidden_tag() }}
+    {{ form.date.label(class="form-label") }}
+    {{ form.date(size=20, class="form-control") }}
+    {{ form.title.label(class="form-label") }}
+    {{ form.title(size=40, class="form-control") }}
+
+    {{ form.text.label(class="form-label") }}
+    {{ form.text(class="form-control") }}
+
+    {% if form.errors %}
+      <ul class="alert alert-danger my-3">
+        {% for name, errors in form.errors.items() %}
+          <li>
+            <strong>{{ name }}</strong>
+            <ul>
+              {% for error in errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <button class="btn btn-outline-primary my-2"
+            type="submit">
+      {{ buttontext }}
+    </button>
+  </form>
+{% endmacro %}

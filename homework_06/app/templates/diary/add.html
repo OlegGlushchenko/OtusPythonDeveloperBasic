@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% from 'diary/macros/recordform.html' import recordform %}
+
+{% set createpath = url_for('diary_record_app.add') %}
+{% set iscreate = request.path == createpath %}
+{% if iscreate %}
+  {% set buttontext = 'Create' %}
+{% else %}
+  {% set buttontext = 'Update' %}
+{% endif %}
+
+{% block title %}
+  {% if iscreate %}
+    Add
+  {% else %}
+    Update {{ record.id }}
+  {% endif %}
+  record
+{% endblock %}
+
+{% block body %}
+  <div>
+    <div class="h3">{% if iscreate %}
+      Create a new record
+    {% else %}
+      Update record <code>{{ record.title }}</code>
+    {% endif %}
+    </div>
+    {{ recordform(form, buttontext) }}
+  </div>
+
+{% endblock %}
