@@ -1,0 +1,35 @@
+{% extends 'root.html' %}
+
+{% block title %}
+Список всех сделок
+{% endblock %}
+
+{% block content %}
+   <h1>Все сделки</h1>
+    <ul class="list-group">
+        <li class="list-group-item">
+        <div class="container">
+            <div class="row">
+                <div class="col-2">Сделка номер:</div>
+                <div class="col-2">Комитент:</div>
+                <div class="col-6">Товар:</div>
+                <div class="col-2">Статус:</div>
+            </div>
+        </div>
+        </li>
+      {% for deal in deals %}
+
+        <li class="list-group-item">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-2"><a href="{% url 'deal' pk=deal.pk  %}">{{ deal.id }}</a></div>
+                    <div class="col-2">{{ deal.committent.surname }}<br>{{ deal.committent.name }}</div>
+                    <div class="col-6">{% for product in deal.products.all %}{{ product.prod_inst.name }}<br>{% endfor %}</div>
+                    <div class="col-2">{{ deal.status.status_text }}</div>
+                </div>
+            </div>
+        </li>
+      {% endfor %}
+    </ul>
+{% endblock %}
