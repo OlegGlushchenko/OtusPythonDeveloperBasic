@@ -1,0 +1,74 @@
+{% extends 'root.html' %}
+
+{% block title %}
+Сделка
+{% endblock %}
+
+{% block content %}
+
+  <h1>Сделка {{ deal.id }}</h1>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="container">
+        <div class="row">
+          <div class="col-3">Комитент:</div>
+          <div class="col-9">{{ deal.committent.name }}<br>{{ deal.committent.surname }}<br>{{ deal.committent.patronymic }}</div>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="container">
+        <div class="row">
+          <div class="col-3">Товар:</div>
+          <div class="col-1">Код:</div>
+          <div class="col-2">Название:</div>
+          <div class="col-1">Цена:</div>
+          <div class="col-1">Количество:</div>
+          <div class="col-4">Примечаине:</div>
+          {% for product in deal.products.all %}
+            <br>
+            <div class="col-3"></div>
+            <div class="col-1">{{ product.code_number }}</div>
+            <div class="col-2">{{ product.prod_inst.name }}</div>
+            <div class="col-1">{{ product.price }}</div>
+            <div class="col-1">{{ product.amount }}</div>
+            <div class="col-4">{{ product.notes }}</div>
+          {% endfor %}
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="container">
+        <div class="row">
+          <div class="col-3">Комиссия, в %:</div>
+          <div class="col-9"><div class="col-2">{{ deal.commission }}</div></div>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="container">
+        <div class="row">
+          <div class="col-3">Дата открытия сделки:</div>
+          <div class="col-9"><div class="col-2">{{ deal.date_start }}</div></div>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="container">
+        <div class="row">
+          <div class="col-3">Дата закрытия сделки:</div>
+          <div class="col-9"><div class="col-2">{{ deal.date_close }}</div></div>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="container">
+        <div class="row">
+          <div class="col-3">Статус сделки:</div>
+          <div class="col-9"><div class="col-2">{{ deal.status.status_text }}</div></div>
+        </div>
+      </div>
+    </li>
+
+  </ul>
+{% endblock %}
