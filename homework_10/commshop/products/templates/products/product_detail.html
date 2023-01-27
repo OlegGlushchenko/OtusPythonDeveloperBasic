@@ -1,0 +1,22 @@
+{% extends 'root.html' %}
+
+{% block title %}
+Характеристики
+{% endblock %}
+
+{% block content %}
+  <h1>Характеристики товара {{ product.name }}</h1>
+  {% for property in product.property.all %}
+  <ul class="list-group">
+    <li class="list-group-item">
+      <div class="container">
+        <div class="row">
+          <div class="col-4">{{ property.prod_type.name }}</div>
+          <div class="col-8">{% if property.text_value|length != 0 %}{{ property.text_value }}{% else %}{{ property.value }}{% endif %}</div>
+        </div>
+      </div>
+    </li>
+  </ul>
+  {% endfor %}
+
+{% endblock %}
